@@ -1,9 +1,4 @@
----
-title: "Project Brainstorm"
-author: "Wen Yi Aw, Lisa Marie Dias, Leila Li, Anna Zhou"
-date: "5/01/2019"
-output: html_document
----
+# Project Brainstorm
 
 ## Domain of Interest
 **Topic: Alcohol and car accidents**
