@@ -9,9 +9,12 @@ library("knitr")
 # source("scripts/summary_info.R")
 # source("scripts/summary_table.R")
 # source("scripts/chart1.R")
-# source("scripts/chart2.R")
+source("scripts/chart2.R")
+death_rate <- read.csv("data/Impaired_Driving_Death_Rate_by_Age_and_Gender_2012_2014_All_States.csv", stringsAsFactors = FALSE)
+library("choroplethr")
+library("choroplethrMaps")
 source("scripts/chart3.R")
-bac <- read.csv("data/dataset1.csv")
+bac <- read.csv("data/dataset1.csv", stringsAsFactors = FALSE)
 colnames(bac)[colnames(bac)=="Driver.BAC...0.00..Percent"] <- "Percent_Drivers_0_BAC"
 colnames(bac)[colnames(bac)=="Driver.BAC....08...Percent"] <- "Percent_Drivers_over_0.08_BAC"
 library("ggplot2")
@@ -50,3 +53,9 @@ chart3(bac)
 
 Here, we see that in most states, over 70% of drivers involved in fatal crashes were 
 sober (had blood alcohol content of 0), shown on the right half of the plot. There are a few exceptions, shown on the left half of the plot, where there is a lower percentage of sober drivers in accidents and a higher number of drivers over the legal limit.
+
+This chart includes multiple graphs of fatal car accident percentage by age and gender accross the United States. This chart intend to show _"The relationship between driving under the influence and age/gender in 2012 and 2014."_
+```{r chart2, echo = FALSE}
+chart2(death_rate, 2014, male)
+```
+From these graphs, we can see that female drivers are less likely to be involved in fetel drunk driving accidents accross the United States, while drivers between the age 21 and 35 are most likely to be involved infetel drunk driving accidents. In general states like , MT, ND, WY, and NM have higher drunk driving death rate, and states like, WA, MI And UT have lower death rate. And the overall trend hasn't changed from 2012 to 2014. 
