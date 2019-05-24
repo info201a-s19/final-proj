@@ -1,12 +1,6 @@
 # This file summarizes the information of the file
 
 library(dplyr)
-library(tidyr)
-library(kable)
-
-# load data
-collisions <- read.csv("~/INFO/201/final-proj/data/mvc_threeyear_ny.csv", 
-                       stringsAsFactors = FALSE)
 # summarizing info
 get_summary_info <- function(df) {
     ret <- list()
@@ -32,5 +26,3 @@ get_summary_info <- function(df) {
     
     return(ret)
 }
-
-ny_summary <- get_summary_info(collisions)
