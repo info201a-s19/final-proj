@@ -13,6 +13,6 @@ table_maker <- function(df) {
             arrange(-Total.Drivers.Involved.in.Fatal.Crashes..Number)
         colnames(stats) <- c("State",
                              "Number of Drivers Involved in Fatal Crashes",
-                             "Percent of Drivers w/ BAC over 0.1")
+                             "Percent of Drivers w/ BAC Greater Than or Equal to 0.1")
         return(stats)
 }
