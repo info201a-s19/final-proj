@@ -4,7 +4,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 
 # load libraries
 library("knitr")
@@ -23,13 +23,20 @@ source("scripts/chart3.R")
 # load data
 death_rate <- read.csv("data/Impaired_Driving_Death_Rate__by_Age_and_Gender__2012___2014__All_States.csv", stringsAsFactors = FALSE)
 bac <- read.csv("data/dataset1.csv", stringsAsFactors = FALSE)
+ny_3yr_crashes <- read.csv("data/mvc_threeyear_ny.csv")
+
+# getting summary info from ny crashes
+ny_crashes <- get_summary_info(ny_3yr_crashes)
 
 # rename columns
-colnames(bac)[colnames(bac)=="ï..State"] <- "State"
+colnames(bac)[colnames(bac)=="?..State"] <- "State"
 colnames(bac)[colnames(bac)=="Driver.BAC...0.00..Percent"] <- 
   "Percent_Drivers_0_BAC"
 colnames(bac)[colnames(bac)=="Driver.BAC....08...Percent"] <- "Percent_Drivers_over_0.08_BAC"
 bac <- head(bac, -1) # remove the "total" row
+
+# creating table
+bac_table <- table_maker(bac)
 ```
 
 ## Alcohol and car accidents
@@ -44,12 +51,22 @@ Fatal Crashes, by State and Blood Alcohol Concentration of the Driver" ([source]
 data covers the United States, up to the year 2017, and was collected by the 
 Fatality Analysis Reporting System.
 
+For our datasets, the datasets we used gave every car accident for a certain state/region for a given year. For our chosen set, it reported every accident in New York from 2014 to 2016. The summary information that we calculated was the number of accidents per year, the number of accidents with alcohol has a cause, the percentage of accidents caused by alcohol, average accidents per year, and most common day car type. From 2014 to 2016, New York had `r ny_crashes$total_crashes` crashes and `r ny_crashes$total_alc_crashes` were caused by drivers under the influence of alcohol. This is a large number of car accidents due to alcohol consumption, but it was only `r ny_crashes$pct_crash`% of the total crashes in New York. While it is only a small percentage of New York's total crashes, the number itself is significant and can be reduced when people cease drunk driving. On average, New York had `r as.integer(ny_crashes$avg)` crashes per year, and the year with the highest crashes was `r ny_crashes$highest_year`, showing that the number of crashes has not been decreasing.
+
+This table shows the total drivers involved in fatal car accidents up to 2017 and the percentage of drivers that had a Blood Alcohol Content (BAC) greater than or equal to 0.1 by state. The table is arranged by decreasing number of fatal deaths. This information is displayed to show how many fatal crashes can be reduced if drivers are responsible and do not drunk drive.
+
+``` {r}
+kable(bac_table)
+```
+
+From the chart, one can see that most states' fatal crash crashes are due to drivers with a BAC greater than or equal to 0.1. The top three states by number of fatal crashes are Texas, California, and Florida. But from the table, the state size (population) correlates to the number of accidents. The most important takeaway is knowing that roughly `r round(mean(bac_table$"Percent of Drivers w/ BAC over 0.1"), digits = 2)`% of fatal car crashes in all states is due to drunk driving, meaning that these crashes are all preventable if drivers act responsibly. 
+
 The bar plot below displays the percentage of adults involved in car accident fatalities in the United States sorted by BAC (Blood Alcohol Concentration). The three bars have information at the 0, 0.1-0.7, 0.8+ BAC levels respectively. 
 ```{r chart1, echo = FALSE, warnings = FALSE}
 n_data(bac)
 ```
 
-As can be seen, this chart clearly depicts how the the highest frequencies in adult fatalities were at the 0.0 BAC level and 0.8+ level. This shows that there were more US adults involved in these car accidents when they were legally impaired(0.8+), as compared to intoxicated at a BAC level ranging from 0.1-0.7. Clearly, the most extreme BAC levels have led to some of the highest percentage of adults involved in these car accident fatalities. 
+As can be seen, this chart clearly depicts how the the highest frequencies in adult fatalities were at the 0.0 BAC level and 0.8+ level. This shows that there were more US adults involved in these car accidents when they were legally impaired(0.8+), as compared to intoxicated at a BAC level ranging from 0.1-0.7. Clearly, the most extreme BAC levels have led to some of the highest percentage of adults involved in these car accident fatalities.
 
 The next chart includes multiple graphs of fatal car accident percentage by age and gender accross the United States. This chart intend to show _"The relationship between driving under the influence and age/gender in 2012 and 2014."_
 ```{r chart2, echo=FALSE, message=FALSE, warning=FALSE, results="hide"}
