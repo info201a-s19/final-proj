@@ -52,7 +52,7 @@ As can be seen, this chart clearly depicts how the the highest frequencies in ad
 
 The next chart includes multiple graphs of fatal car accident percentage by age and gender accross the United States. This chart intend to show _"The relationship between driving under the influence and age/gender in 2012 and 2014."_
 ```{r chart2, echo = FALSE}
-# chart2(death_rate, 2014, male)
+chart2(death_rate, 2014, male)
 ```
 From these graphs, we can see that female drivers are less likely to be involved 
 in fatal drunk driving accidents across the United States, while drivers between 
