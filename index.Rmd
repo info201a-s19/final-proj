@@ -5,53 +5,54 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
+# load libraries
 library("knitr")
 library("choroplethr")
 library("choroplethrMaps")
 library("ggplot2")
 library("plotly")
+
+# load source files
 source("scripts/summarize_info.R")
 source("scripts/make_table.R")
 source("scripts/Histogram_Fatalities.R")
 source("scripts/chart2.R")
 source("scripts/chart3.R")
+
+# load data
 death_rate <- read.csv("data/Impaired_Driving_Death_Rate__by_Age_and_Gender__2012___2014__All_States.csv", stringsAsFactors = FALSE)
 bac <- read.csv("data/dataset1.csv", stringsAsFactors = FALSE)
+
+# rename columns
+colnames(bac)[colnames(bac)=="ï..State"] <- "State"
 colnames(bac)[colnames(bac)=="Driver.BAC...0.00..Percent"] <- 
   "Percent_Drivers_0_BAC"
 colnames(bac)[colnames(bac)=="Driver.BAC....08...Percent"] <- "Percent_Drivers_over_0.08_BAC"
 bac <- head(bac, -1) # remove the "total" row
 ```
 
-Leverage the functions written in the other files to create your report:
-
 ## Alcohol and car accidents
 
 ### Introduction
 
 According to National Public Radio ([NPR](https://www.npr.org/sections/thetwo-way/2017/08/10/542409957/drinking-on-
-the-rise-in-u-s-especially-for-women-minorities-older-adults)), alcohol consumption has been increasing in the United States, and out group wants to explore how 
+the-rise-in-u-s-especially-for-women-minorities-older-adults)), alcohol consumption has been increasing in the United States, and our group wants to explore how 
 this change may be related to the frequency of car accidents. 
 One of the data sets we are using to examine this issue is "Drivers Involved in 
 Fatal Crashes, by State and Blood Alcohol Concentration of the Driver" ([source](https://www-fars.nhtsa.dot.gov/States/StatesAlcohol.aspx)). This 
 data covers the United States, up to the year 2017, and was collected by the 
 Fatality Analysis Reporting System.
 
-* Write an introductory paragraph explaining the domain/data set (feel free to borrow from the brainstorm part of the assignment)
-* Write a summary paragraph that includes information calculated by your summary information function
-* Render your table and describe pertinent observations found in it
-* Describe the purpose of each chart (e.g., "this chart was intended to show the relationship between..."), render each chart, and describe pertinent observations found in each chart
-* In order to render this information, you'll need to read in your data in (only) your index.Rmd file, and pass your data to the functions provided in each script.
-
-This bar plot displays the percentage of adults involved in car accident fatalities in the United States sorted by BAC(Blood Alcohol Concentration). The three charts have information at the 0, 0.1-0.7, 0.8 + BAC levels respectively. 
-```{r chart1, echo = FALSE}
+The bar plot below displays the percentage of adults involved in car accident fatalities in the United States sorted by BAC (Blood Alcohol Concentration). The three bars have information at the 0, 0.1-0.7, 0.8+ BAC levels respectively. 
+```{r chart1, echo = FALSE, warnings = FALSE}
 n_data(bac)
 ```
 
-As can be seen, this chart clearly depicts how the the highest frequencies in adult fatalities were at the 0.0 BAC level and 0.8 + level. This shows that there were more US adults involved in these car accidents when they were legally impaired(0.8+), as compared to intoxicated at a BAC level ranging from 0.1-0.7. Clearly, the most extreme BAC levels have led to some of the highest percentage of adults involved in these car accident fatalities. 
+As can be seen, this chart clearly depicts how the the highest frequencies in adult fatalities were at the 0.0 BAC level and 0.8+ level. This shows that there were more US adults involved in these car accidents when they were legally impaired(0.8+), as compared to intoxicated at a BAC level ranging from 0.1-0.7. Clearly, the most extreme BAC levels have led to some of the highest percentage of adults involved in these car accident fatalities. 
 
 The next chart includes multiple graphs of fatal car accident percentage by age and gender accross the United States. This chart intend to show _"The relationship between driving under the influence and age/gender in 2012 and 2014."_
-```{r chart2, echo = FALSE}
+```{r chart2, echo=FALSE, message=FALSE, warning=FALSE, results="hide"}
 # 2012/2014, 0-20/21-34/35+/male/female
 chart2(death_rate, 2014, "male")
 ```
@@ -65,9 +66,8 @@ trend hasn't changed from 2012 to 2014.
 This third chart was intended to show the relationship between drivers involved in fatal crashes with zero blood alcohol content compared to those who were over the legal limit of 0.08 BAC. This makes an effort to answer, _"Is a driver with higher blood alcohol concentration (BAC) more likely to be involved in a crash?"_ 
 Each point represents a state.
 
-```{r chart3, echo=FALSE}
+```{r chart3, echo = FALSE, warnings = FALSE}
 chart3(bac)
 ```
 
-Here, we see that in most states, over 70% of drivers involved in fatal crashes were 
-sober (had blood alcohol content of 0), shown on the right half of the plot. There are a few exceptions, shown on the left half of the plot, where there is a lower percentage of sober drivers in accidents and a higher number of drivers over the legal limit.
+Here, we see that in most states, over 70% of drivers involved in fatal crashes were sober (had blood alcohol content of 0), shown on the right half of the plot. There are a few exceptions, shown on the left half of the plot, where there is a lower percentage of sober drivers in accidents and a higher number of drivers over the legal limit.

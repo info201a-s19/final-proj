@@ -1,7 +1,7 @@
 chart3 <- function(df) {
   plot <- ggplot(
     bac, 
-    aes(Percent_Drivers_0_BAC, Percent_Drivers_over_0.08_BAC, text = ï..State)
+    aes(Percent_Drivers_0_BAC, Percent_Drivers_over_0.08_BAC, text = State)
     ) + 
   
     geom_point() +
