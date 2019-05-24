@@ -22,8 +22,7 @@ source("scripts/chart3.R")
 
 # load data
 death_rate <- read.csv(
-  "data/Impaired_Driving_Death_Rate__by_Age_and_Gender__2012___2014__All_
-  States.csv",
+"data/Impaired_Driving_Death_Rate__by_Age_and_Gender__2012___2014__All_States.csv",
   stringsAsFactors = FALSE)
 bac <- read.csv("data/dataset1.csv", stringsAsFactors = FALSE)
 ny_3yr_crashes <- read.csv("data/mvc_threeyear_ny.csv")
@@ -76,9 +75,10 @@ n_data(bac)
 As can be seen, this chart clearly depicts how the the highest frequencies in adult fatalities were at the 0.0 BAC level and 0.8+ level. This shows that there were more US adults involved in these car accidents when they were legally impaired(0.8+), as compared to intoxicated at a BAC level ranging from 0.1-0.7. Clearly, the most extreme BAC levels have led to some of the highest percentage of adults involved in these car accident fatalities.
 
 The next chart includes multiple graphs of fatal car accident percentage by age and gender accross the United States. This chart intend to show _"The relationship between driving under the influence and age/gender in 2012 and 2014."_
-```{r chart2, echo=FALSE, message=FALSE, warning=FALSE, results="hide"}
+<<<<<<< HEAD
+```{r chart2, message=FALSE, warning=FALSE}
 # 2012/2014, 0-20/21-34/35+/male/female
-chart2(death_rate, 2014, "male")
+chart2(death_rate, 2014, "21-34")
 ```
 
 From these graphs, we can see that female drivers are less likely to be involved 
