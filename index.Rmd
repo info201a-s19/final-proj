@@ -56,6 +56,6 @@ sober (had blood alcohol content of 0), shown on the right half of the plot. The
 
 This chart includes multiple graphs of fatal car accident percentage by age and gender accross the United States. This chart intend to show _"The relationship between driving under the influence and age/gender in 2012 and 2014."_
 ```{r chart2, echo = FALSE}
-chart2(death_rate, 2014, male)
+chart2(death_rate, 2014, "male")
 ```
 From these graphs, we can see that female drivers are less likely to be involved in fetel drunk driving accidents accross the United States, while drivers between the age 21 and 35 are most likely to be involved infetel drunk driving accidents. In general states like , MT, ND, WY, and NM have higher drunk driving death rate, and states like, WA, MI And UT have lower death rate. And the overall trend hasn't changed from 2012 to 2014. 
