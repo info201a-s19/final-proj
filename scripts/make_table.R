@@ -4,7 +4,7 @@ table_maker <- function(df) {
         df <- df %>%
             mutate(
                 pct_BAC_over_0 = Driver.BAC....01...07..Percent +
-                    Driver.BAC....08...Percent
+                    Percent_Drivers_over_0.08_BAC
             )
         stats <- df %>%
             select(State, Total.Drivers.Involved.in.Fatal.Crashes..Number,
