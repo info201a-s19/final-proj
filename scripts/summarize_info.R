@@ -1,6 +1,7 @@
 # This file summarizes the information of the file
 
 library(dplyr)
+
 # summarizing info
 get_summary_info <- function(df) {
     ret <- list()
@@ -16,11 +17,8 @@ get_summary_info <- function(df) {
         group_by(Year) %>%
         tally()
     ret$avg <- mean(accident_year$n)
-    car_type <- df %>%
-        group_by(Vehicle.Body.Type) %>%
-        tally()
-    ret$most_common_car <- car_type %>%
+    ret$highest_year <- accident_year %>%
         filter(n == max(n)) %>%
-        pull(Vehicle.Body.Type)
+        pull(Year)
     return(ret)
 }
