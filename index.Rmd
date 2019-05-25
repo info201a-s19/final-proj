@@ -22,7 +22,7 @@ source("scripts/chart3.R")
 
 # load data
 death_rate <- read.csv(
-"data/Impaired_Driving_Death_Rate__by_Age_and_Gender__2012___2014__All_States.csv",
+  "data/Impaired_Driving_Death_Rate_by_Age_and_Gender_2012_2014_All_States.csv",
   stringsAsFactors = FALSE)
 bac <- read.csv("data/dataset1.csv", stringsAsFactors = FALSE)
 ny_3yr_crashes <- read.csv("data/mvc_threeyear_ny.csv")
@@ -74,18 +74,16 @@ n_data(bac)
 
 As can be seen, this chart clearly depicts how the the highest frequencies in adult fatalities were at the 0.0 BAC level and 0.8+ level. This shows that there were more US adults involved in these car accidents when they were legally impaired(0.8+), as compared to intoxicated at a BAC level ranging from 0.1-0.7. Clearly, the most extreme BAC levels have led to some of the highest percentage of adults involved in these car accident fatalities.
 
-The next chart includes multiple graphs of fatal car accident percentage by age and gender accross the United States. This chart intend to show _"The relationship between driving under the influence and age/gender in 2012 and 2014."_
-<<<<<<< HEAD
-```{r chart2, message=FALSE, warning=FALSE}
+Below, there are includes multiple maps of fatal car accident percentage by age and gender across the United States. This chart intends to show _the relationship between driving under the influence and age/gender in 2012 and 2014._
+```{r chart2, echo=FALSE, message=FALSE, warning=FALSE}
 # 2012/2014, 0-20/21-34/35+/male/female
+chart2(death_rate, 2012, "male")
+chart2(death_rate, 2012, "female")
+chart2(death_rate, 2012, "21-34")
 chart2(death_rate, 2014, "21-34")
 ```
 
-From these graphs, we can see that female drivers are less likely to be involved 
-in fatal drunk driving accidents across the United States, while drivers between 
-the ages of 21 and 35 are most likely to be involved in fatal drunk driving accidents. Overall, states like MT, ND, WY, and NM have higher drunk driving 
-death rates, and states like WA, MI and UT have lower death rates. This general
-trend hasn't changed from 2012 to 2014. 
+From these graphs, we can see that in 2012, female drivers were less likely to be involved in fatal drunk driving accidents across the United States. For drivers between the ages of 21 and 34, overall, states like MT, ND, WY, and NM had higher drunk driving death rates, and states like WA, MI and UT have lower death rates. This general trend hasn't changed from 2012 to 2014. 
 
 This third chart was intended to show the relationship between drivers involved in fatal crashes with zero blood alcohol content compared to those who were over the legal limit of 0.08 BAC. This makes an effort to answer, _"Is a driver with higher blood alcohol concentration (BAC) more likely to be involved in a crash?"_ 
 Each point represents a state.
