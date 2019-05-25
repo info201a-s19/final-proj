@@ -12,7 +12,8 @@ table_maker <- function(df) {
             group_by(Total.Drivers.Involved.in.Fatal.Crashes..Number) %>%
             arrange(-Total.Drivers.Involved.in.Fatal.Crashes..Number)
         colnames(stats) <- c("State",
-                             "Number of Drivers Involved in Fatal Crashes",
-                             "Percent of Drivers w/ BAC Greater Than or Equal to 0.1")
+                        "Number of Drivers Involved in Fatal Crashes",
+                        "Percent of Drivers w/ BAC Greater Than or Equal to 0.1"
+                        )
         return(stats)
 }
