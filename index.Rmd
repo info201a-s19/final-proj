@@ -51,7 +51,11 @@ Fatal Crashes, by State and Blood Alcohol Concentration of the Driver" ([source]
 data covers the United States, up to the year 2017, and was collected by the 
 Fatality Analysis Reporting System.
 
+### Summary Information
+
 For our datasets, the datasets we used gave every car accident for a certain state/region for a given year. For our chosen set, it reported every accident in New York from 2014 to 2016. The summary information that we calculated was the number of accidents per year, the number of accidents with alcohol has a cause, the percentage of accidents caused by alcohol, average accidents per year, and most common day car type. From 2014 to 2016, New York had `r ny_crashes$total_crashes` crashes and `r ny_crashes$total_alc_crashes` were caused by drivers under the influence of alcohol. This is a large number of car accidents due to alcohol consumption, but it was only `r ny_crashes$pct_crash`% of the total crashes in New York. While it is only a small percentage of New York's total crashes, the number itself is significant and can be reduced when people cease drunk driving. On average, New York had `r as.integer(ny_crashes$avg)` crashes per year, and the year with the highest crashes was `r ny_crashes$highest_year`, showing that the number of crashes has not been decreasing.
+
+### Summary Table
 
 This table shows the total drivers involved in fatal car accidents up to 2017 and the percentage of drivers that had a Blood Alcohol Content (BAC) greater than or equal to 0.1 by state. The table is arranged by decreasing number of fatal deaths. This information is displayed to show how many fatal crashes can be reduced if drivers are responsible and do not drunk drive.
 
@@ -60,6 +64,8 @@ kable(bac_table)
 ```
 
 From the chart, one can see that most states' fatal crash crashes are due to drivers with a BAC greater than or equal to 0.1. The top three states by number of fatal crashes are Texas, California, and Florida. But from the table, the state size (population) correlates to the number of accidents. The most important takeaway is knowing that roughly `r round(mean(bac_table$"Percent of Drivers w/ BAC over 0.1"), digits = 2)`% of fatal car crashes in all states is due to drunk driving, meaning that these crashes are all preventable if drivers act responsibly. 
+
+### Charts
 
 The bar plot below displays the percentage of adults involved in car accident fatalities in the United States sorted by BAC (Blood Alcohol Concentration). The three bars have information at the 0, 0.1-0.7, 0.8+ BAC levels respectively. 
 ```{r chart1, echo = FALSE, warnings = FALSE}
