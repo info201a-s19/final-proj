@@ -104,11 +104,43 @@ scatterplot_panel <- tabPanel(
   )
 )
 
+# Tab 3: Death Rate by Age and Gender 2014/2012
+choices <- c("2012 All Ages", "2012 0-20", "2012 21-34", "2012 35+", 
+             "2012 Male", "2012 Female", "2014 All Ages", "2014 0-20", 
+             "2014 21-34", "2014 35+", "2014 Male", "2014 Female")
+
+barplot <- tabPanel(
+  "Impared Driving Death Rate", titlePanel("Death Cause By Drunk Driving
+                                           in Different Age Group and Sex (2012
+                                           and 2014)"),
+  sidebarLayout(
+    sidebarPanel(
+      # choosing the state
+      selectInput(
+        inputId = "first", label = "Select the first Comparison Variable", 
+        choices = choices
+      ),
+      # choosing the number of cities to be shown
+      selectInput(
+        inputId = "second", label = "Select the second Comparison Variable", 
+        choices = choices
+      )
+    ),
+    mainPanel(
+      # displaying the resulting table with explanation
+      tableOutput(outputId = "barplot"),
+      p("")
+      )
+    )
+  )
+
+
 # UI structure
 ui <- navbarPage(
   "US Drunk Driving Data",
   takeaways,
-  scatterplot_panel
+  scatterplot_panel,
+  barplot
 )
 
 
