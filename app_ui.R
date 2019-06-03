@@ -105,9 +105,18 @@ scatterplot_panel <- tabPanel(
 )
 
 # Tab 3: Death Rate by Age and Gender 2014/2012
-choices <- c("2012 All Ages", "2012 0-20", "2012 21-34", "2012 35+", 
-             "2012 Male", "2012 Female", "2014 All Ages", "2014 0-20", 
-             "2014 21-34", "2014 35+", "2014 Male", "2014 Female")
+choices <- c("2012_All_Ages", 
+             "2014_All_Ages", 
+             "2012_0_20", 
+             "2014_0_20", 
+             "2012_21_34", 
+             "2014_21_34",
+             "2012_35",
+             "2014_35",
+             "2012_Male",
+             "2014_Male",
+             "2012_Female",
+             "2014_Female")
 
 barplot <- tabPanel(
   "Impared Driving Death Rate", titlePanel("Death Cause By Drunk Driving
