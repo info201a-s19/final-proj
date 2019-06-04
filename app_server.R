@@ -3,18 +3,11 @@ library("ggplot2")
 library("plotly")
 library("shiny")
 library("stringr")
-source("final_scripts/make_histogram.R")
 
 server <- function(input, output) {
-    
-    output$histogram <- renderPlotly({
-        make_chart(bac_levels, input$bac_level)
-        
-    })
-    
-    
   # Define scatterplot to render in UI
   output$scatterplot <- renderPlotly({
+    
     # select input data
     data <- bac[c("State", input$x_input, input$y_input)]
     x <- data[, input$x_input]
@@ -35,35 +28,58 @@ server <- function(input, output) {
   output$barplot <- renderPlotly({
     death_rate <- read.csv("data/Impaired_Driving_Death_Rate", 
                            stringsAsFactors = FALSE)
-    colnames(death_rate) <- c("State", 
-                              "Location",
-                              "2012_All_Ages", 
-                              "2014_All_Ages", 
-                              "2012_0_20", 
-                              "2014_0_20", 
-                              "2012_21_34", 
-                              "2014_21_34",
-                              "2012_35",
-                              "2014_35",
-                              "2012_Male",
-                              "2014_Male",
-                              "2012_Female",
-                              "2014_Female")
-
-    first <- input$first
-    
-    usable_data <- death_rate %>% 
-      select(State, input$first, input$second)
-    colnames(data_x) <- c("State", "first", "second")
-    
-    plot_ly(usable_data, x = ~State, y = ~first, type = 'bar', 
-            name = input$first, marker = list(color = 'rgb(49,130,189)')) %>%
-      add_trace(y = ~second, name = input$second, 
-                marker = list(color = 'rgb(204,204,204)')) %>%
-      layout(xaxis = list(title = "", tickangle = -45),
-             yaxis = list(title = ""),
-             margin = list(b = 100),
-             barmode = 'group')
+    p <- death_rate %>% plot_ly() 
+    if(input$first == "2012 0-20" || input$second == "2012 0-20"){
+      p %>% 
+        add_trace(x = ~State, y = ~Ages.0.20..2012, type = 'bar',
+                  name = '2012 0-20')
+    }else if(input$first == "2012 21-34" || input$second == "2012 21-34"){
+      p %>% 
+        add_trace(x = ~State, y = ~Ages.21.34..2012, type = 'bar',
+                  name = '2012 21-34')
+    }else if(input$first == "2012 35+" || input$second == "2012 35+"){
+      p %>% 
+        add_trace(x = ~State, y = ~Ages.35...2012, type = 'bar',
+                  name = '2012 35+')
+    }else if(input$first == "2012 Male" || input$second == "2012 Male"){
+      p %>% 
+        add_trace(x = ~State, y = ~Male..2012, type = 'bar',
+                  name = '2012 Male')
+    }else if(input$first == "2012 Female" || input$second == "2012 Female"){
+      p %>% 
+        add_trace(x = ~State, y = ~Female..2012, type = 'bar',
+                  name = '2012 Female')
+    }else if(input$first == "2012 All Ages" || input$second == "2012 All Ages"){
+      p %>% 
+        add_trace(x = ~State, y = ~All.Ages..2012, type = 'bar',
+                  name = '2012 All Ages')
+    }else if(input$first == "2014 0-20" || input$second == "2014 0-20"){
+      p %>% 
+        add_trace(x = ~State, y = ~Ages.0.20..2014, type = 'bar',
+                  name = '2014 0-20')
+    }else if(input$first == "2014 21-34" || input$second == "2014 21-34"){
+      p %>% 
+        add_trace(x = ~State, y = ~Ages.21.34..2014, type = 'bar',
+                  name = '2014 21-34')
+    }else if(input$first == "2014 35+" || input$second == "2014 35+"){
+      p %>% 
+        add_trace(x = ~State, y = ~Ages.35...2014, type = 'bar',
+                  name = '2014 35+')
+    }else if(input$first == "2014 Male" || input$second == "2014 0-20"){
+      p %>% 
+        add_trace(x = ~State, y = ~Male..2014, type = 'bar',
+                  name = '2014 Male')
+    }else if(input$first == "2014 Female" || input$second == "2014 Female"){
+      p %>% 
+        add_trace(x = ~State, y = ~Female..2014, type = 'bar',
+                  name = '2014 Female')
+    }else if(input$first == "2014 All Ages" || input$second == "2014 All Ages"){
+      p %>% 
+        add_trace(x = ~State, y = ~All.Ages..2014, type = 'bar',
+                  name = '2014 All Ages')
+    }
+    return(p)
   })
+  
+  
 }
-

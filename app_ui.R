@@ -29,35 +29,45 @@ bac <- head(bac, -1) # remove the "USA" total row
 
 overview_main_content <- mainPanel(
   p("
-    1)
-    As can be seen from the data presented in various states in the US, having a BAC 
-    of over 0.8, which also characterizes one as having a DUI is strongly correlated 
-    with car accident injuries and fatalities. From real life examples from the 
-    states of ___ and ____specifically, one can see 
-    that the largest percentage of car accidents occur from those that are either 
-    unrelated to alcohol, or ones that have a BAC level of over 0.8. This is 
-    important to raise awareness for because of how incredibly easy it is to reach 
-    this BAC level without one even realizing it. Thus, people should try to avoid 
-    drinking and driving at all costs if possible. 
-    
-    2) 
-    One of the ways to examine whether a driver with higher blood 
-    alcohol concentration (BAC) more likely to be involved in a crash is by 
-    comparing the percentage of drivers with 0.01-0.07 BAC versus those with 0.08+ 
-    BAC. By looking at the percentage values, we see a general trend that the 
-    percentage of drivers who were over the limit in fatal crashes is always greater 
-    than the percentage of those intoxicated but under the limit
-    
-    3)
-    "))
+    The act of driving under the influence(DUI) involved operating a vehicle while
+    one has a blood alcohol tolerance of at least .08. This action is one that an 
+    abundance of people often overlook until it is too late. In many sitautions,
+    people are unaware that their BAC leve is already .08 or that they are too
+    intoxicated to keep driving. This is due to the effects of alcohol, and the lack
+    of obvious indicators it holds to make it clear to an invididual that they are
+    not conscious enough to operate a vehicle. 
+    The affects of DUI can range from those that are minor, all the way to extreme
+    fatalities that cannot be undone. By observing real data that depicts possible 
+    correlations between DUI and fatalities, a variety of important questions can be 
+    answered and potentially help a large audience gain a better understanding of 
+    the effects of driving under the influence. "),
   
+  p("
+    The specific data we will be using for this report includes BAC levels
+    for each state along with the number of fatalities, impaired driving
+    death rate, percentage of adults who have died from DUI's in specific states,
+    overall collision statistics, 
+    With all of these data sources, our report aims to answer the specific questions 
+    of: "),
+  
+  p("
+    1.Is a driver with higher blood alcohol concentration (BAC) more likely to be 
+    involved in a crash? "),
+  p("
+    2.What is the percentage of adults involved in car accidents at the BAC levels 
+    of 0, 0.1-0.7, 0.8+ respectively? These accidents will be compared at different 
+    BAC levels for various states. "),
+  p("
+    3. "),
+  
+  
+  img(src = 'Drinking.jpg', width = "300px", height = "250px"))
+
 #Tab 1
-takeaways <- tabPanel(
+overview <- tabPanel(
   "BAC Level and Car Accident Overview",
   titlePanel("BAC Level and Car Accident Overview"),
-  mainPanel(
-    overview_main_content
-  )
+  overview_main_content
 )
 
 # Tab 2: Ethnic Group
@@ -105,18 +115,9 @@ scatterplot_panel <- tabPanel(
 )
 
 # Tab 3: Death Rate by Age and Gender 2014/2012
-choices <- c("2012_All_Ages", 
-             "2014_All_Ages", 
-             "2012_0_20", 
-             "2014_0_20", 
-             "2012_21_34", 
-             "2014_21_34",
-             "2012_35",
-             "2014_35",
-             "2012_Male",
-             "2014_Male",
-             "2012_Female",
-             "2014_Female")
+choices <- c("2012 All Ages", "2012 0-20", "2012 21-34", "2012 35+", 
+             "2012 Male", "2012 Female", "2014 All Ages", "2014 0-20", 
+             "2014 21-34", "2014 35+", "2014 Male", "2014 Female")
 
 barplot <- tabPanel(
   "Impared Driving Death Rate", titlePanel("Death Cause By Drunk Driving
@@ -139,34 +140,50 @@ barplot <- tabPanel(
       # displaying the resulting table with explanation
       tableOutput(outputId = "barplot"),
       p("")
-      )
     )
   )
+  )
 
-# Tab 4
-histogram_pg <- tabPanel(
-    "Histogram",
-    titlePanel("Fatal Car Crashes by State"),
-    sidebarLayout(
-        sidebarPanel(
-            selectInput("bac_level", label = "Please Pick",
-                        choices = as.list(colnames(bac_levels[,-1])))
-        ),
-        mainPanel(
-            plotlyOutput("histogram")
-        )
-    )
+#Tab 5:
+
+takeaways_main_content <- mainPanel(
+  p("
+    1)
+    As can be seen from the data presented in various states in the US, having a BAC 
+    of over 0.8, which also characterizes one as having a DUI is strongly correlated 
+    with car accident injuries and fatalities. From real life examples from the 
+    states of ___ and ____specifically, one can see 
+    that the largest percentage of car accidents occur from those that are either 
+    unrelated to alcohol, or ones that have a BAC level of over 0.8. This is 
+    important to raise awareness for because of how incredibly easy it is to reach 
+    this BAC level without one even realizing it. Thus, people should try to avoid 
+    drinking and driving at all costs if possible. "),
+  
+  p("
+    2) 
+    One of the ways to examine whether a driver with higher blood 
+    alcohol concentration (BAC) more likely to be involved in a crash is by 
+    comparing the percentage of drivers with 0.01-0.07 BAC versus those with 0.08+ 
+    BAC. By looking at the percentage values, we see a general trend that the 
+    percentage of drivers who were over the limit in fatal crashes is always greater 
+    than the percentage of those intoxicated but under the limit. "),
+  
+  p("
+    3)
     
+    ")
 )
 
+takeaways <- tabPanel(
+  "BAC Level and Car Accident Takeaways",
+  titlePanel("BAC Level and Car Accident Takeaways"),
+  takeaways_main_content)
 
 # UI structure
 ui <- navbarPage(
   "US Drunk Driving Data",
-  takeaways,
+  overview,
   scatterplot_panel,
   barplot,
-  histogram_pg
+  takeaways
 )
-
-
