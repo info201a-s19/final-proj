@@ -12,7 +12,7 @@ h1 {
 
 h2 {
   font-family: arial;
-  color: gray;
+  color: #7a1a4d;
 }
 
 h3 {
@@ -20,4 +20,15 @@ h3 {
   font-size: 15px;
   font-weight: bold;
   color: black;
+}
+
+header {
+  font-family: georgia;
+  font-size: 24px;
+  font-weight: bold;
+  color: #7a1a4d;
+}
+
+body {
+  background-color: #d5e2f2;
 }

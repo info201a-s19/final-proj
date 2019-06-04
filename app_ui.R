@@ -7,7 +7,6 @@ library("tidyr")
 
 # source server file
 source("app_server.R")
-# source("style.css")
 source("scripts/Histogram_Fatalities.R")
 bac <- read.csv("data/dataset1.csv", stringsAsFactors = FALSE)
 # reformat column names
@@ -77,7 +76,7 @@ overview_main_content <- mainPanel(
 #Tab 1
 overview <- tabPanel(
   tags$h1("BAC Level and Car Accident Overview"),
-  titlePanel("BAC Level and Car Accident Overview"),
+  tags$h2(titlePanel("BAC Level and Car Accident Overview")),
   overview_main_content
 )
 
@@ -242,7 +241,7 @@ takeaways <- tabPanel(
 
 # UI structure
 ui <- navbarPage(theme = "style.css",
-  "US Drunk Driving Data",
+  tags$header("U.S. Drunk Driving Data"),
   overview,
   scatterplot_panel,
   barplot,
