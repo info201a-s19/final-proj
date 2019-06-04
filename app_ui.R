@@ -173,7 +173,8 @@ map_page <- tabPanel(
             p("This map shows the number of car crashes in New York due to
           Alcohol Involvement. It ranges from 2014 to 2019, and it
           shows the Borough and Zip Code of the accident when on an
-          accident site.")
+          accident site. This shows that the number of crashes has increased
+              through the years.")
         )
     )
 )
