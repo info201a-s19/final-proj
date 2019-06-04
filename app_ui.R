@@ -162,17 +162,19 @@ barplot <- tabPanel(
 map_page <- tabPanel(
     tags$h1("Car Crashes New York"),
     titlePanel
-    ("Car Crashes in New York due to Alcohol Involvement (2014-2019)"), 
-    sidebarPanel(
-        selectInput("Year", label = "Choose a Year",
-                    choices = copy$year, selected = "2014")
-    ),
-    mainPanel(
-        leafletOutput(outputId = "nymap"),
-        p("This map shows the number of car crashes in New York due to
+    ("Car Crashes in New York due to Alcohol Involvement (2014-2019)"),
+    sidebarLayout(
+        sidebarPanel(
+            selectInput("Year", label = "Choose a Year",
+                        choices = copy$year, selected = "2014")
+        ),
+        mainPanel(
+            leafletOutput(outputId = "nymap"),
+            p("This map shows the number of car crashes in New York due to
           Alcohol Involvement. It ranges from 2014 to 2019, and it
           shows the Borough and Zip Code of the accident when on an
           accident site.")
+        )
     )
 )
 
