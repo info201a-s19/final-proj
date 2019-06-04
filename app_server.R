@@ -4,8 +4,12 @@ library("plotly")
 library("shiny")
 library("stringr")
 library("dplyr")
+source("scripts/Histogram_Fatalities.R")
 
 server <- function(input, output) {
+  output$bacplot1 <- renderPlot({
+    n_data(bac)
+  })
   # Define scatterplot to render in UI
   output$scatterplot <- renderPlotly({
     

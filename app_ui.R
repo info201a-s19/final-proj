@@ -7,6 +7,7 @@ library("tidyr")
 
 # source server file
 source("app_server.R")
+source("scripts/Histogram_Fatalities.R")
 bac <- read.csv("data/dataset1.csv", stringsAsFactors = FALSE)
 # reformat column names
 colnames(bac) <- c(
@@ -26,21 +27,22 @@ bac <- head(bac, -1) # remove the "USA" total row
 
 # Tab 1: Overview
 
-
 overview_main_content <- mainPanel(
   p("
-    The act of driving under the influence(DUI) involved operating a vehicle while
-    one has a blood alcohol tolerance of at least .08. This action is one that an 
-    abundance of people often overlook until it is too late. In many sitautions,
-    people are unaware that their BAC leve is already .08 or that they are too
-    intoxicated to keep driving. This is due to the effects of alcohol, and the lack
-    of obvious indicators it holds to make it clear to an invididual that they are
-    not conscious enough to operate a vehicle. 
-    The affects of DUI can range from those that are minor, all the way to extreme
-    fatalities that cannot be undone. By observing real data that depicts possible 
-    correlations between DUI and fatalities, a variety of important questions can be 
-    answered and potentially help a large audience gain a better understanding of 
-    the effects of driving under the influence. "),
+    The act of driving under the influence(DUI) involves operating a vehicle 
+    while one has a blood alcohol tolerance of at least .08. This action is one 
+    that an abundance of people often overlook until it is too late. In many 
+    sitautions, people are unaware that their BAC level is already .08 or that 
+    they are too intoxicated to keep driving. This is due to the effects of
+    alcohol, and the lack of obvious indicators it holds to make it clear to an 
+    invididual that they are not conscious enough to operate a vehicle."), 
+  p("
+    The affects of DUI can range from those that are minor, all the way to 
+    extreme fatalities that cannot be undone. By observing real data that 
+    depicts possible correlations between DUI and fatalities, a variety of 
+    important questions can be answered and potentially help a large audience 
+    gain a better understanding of the consequences of driving under the influence.
+    "),
   
   p("
     The specific data we will be using for this report includes BAC levels
@@ -51,17 +53,25 @@ overview_main_content <- mainPanel(
     of: "),
   
   p("
-    1.Is a driver with higher blood alcohol concentration (BAC) more likely to be 
+    1. Is a driver with higher blood alcohol concentration (BAC) more likely to be 
     involved in a crash? "),
   p("
-    2.What is the percentage of adults involved in car accidents at the BAC levels 
+    2. What is the percentage of adults involved in car accidents at the BAC levels 
     of 0, 0.1-0.7, 0.8+ respectively? These accidents will be compared at different 
     BAC levels for various states. "),
   p("
-    3. "),
-  
+    3. What percentage of alcohol-related car accidents are caused by drivers 
+    under the legal drinking age? "), 
+  p("
+    4. In which areas in the United States is it most likely for people to 
+    knowingly be drinking and driving? "),
+  p("
+    5. What is the difference between the percentage of drivers at various
+    intoxication levels, examined in two specific states?
+    "),
   
   img(src = 'Drinking.jpg', width = "300px", height = "250px"))
+
 
 #Tab 1
 overview <- tabPanel(
@@ -199,10 +209,11 @@ takeaways_main_content <- mainPanel(
     unrelated to alcohol, or ones that have a BAC level of over 0.8. This is 
     important to raise awareness for because of how incredibly easy it is to reach 
     this BAC level without one even realizing it. Thus, people should try to avoid 
-    drinking and driving at all costs if possible. "),
+    drinking and driving at all costs if possible. The histogram below here
+    shows the clear percentage difference dependent on alcohol levels:"),
   
-  p("
-    2) 
+  p(
+    "2) 
     One of the ways to examine whether a driver with higher blood 
     alcohol concentration (BAC) more likely to be involved in a crash is by 
     comparing the percentage of drivers with 0.01-0.07 BAC versus those with 0.08+ 
@@ -210,11 +221,18 @@ takeaways_main_content <- mainPanel(
     percentage of drivers who were over the limit in fatal crashes is always greater 
     than the percentage of those intoxicated but under the limit. "),
   
-  p("
+  p(" 
     3)
-    
-    ")
-)
+    "),
+  p("
+4) Most states have an fairly consistent percentage of drivers over the legal 
+  limit who were involved in fatal crashes. However, one notable difference 
+  occurs when comparing the District of Columbia to the state of New York. 
+  Washington D.C. has a much higher percentage of drivers over the legal limit 
+  who were involved in fatal crashes.
+    "),
+  
+  plotOutput(outputId = "bacplot1"))
 
 takeaways <- tabPanel(
   "BAC Level and Car Accident Takeaways",
