@@ -1,0 +1,23 @@
+p {
+  font-family: verdana;
+  font-size: 15px;
+}
+
+h1 {
+  font-family: verdana;
+  font-size: 18px;
+  font-weight: bold;
+  color: #65138e;
+}
+
+h2 {
+  font-family: arial;
+  color: gray;
+}
+
+h3 {
+  font-family: arial;
+  font-size: 15px;
+  font-weight: bold;
+  color: black;
+}

@@ -7,6 +7,7 @@ library("tidyr")
 
 # source server file
 source("app_server.R")
+# source("style.css")
 source("scripts/Histogram_Fatalities.R")
 bac <- read.csv("data/dataset1.csv", stringsAsFactors = FALSE)
 # reformat column names
@@ -28,15 +29,15 @@ bac <- head(bac, -1) # remove the "USA" total row
 # Tab 1: Overview
 
 overview_main_content <- mainPanel(
-  p("
-    The act of driving under the influence(DUI) involves operating a vehicle 
+  tags$p("
+    The act of driving under the influence (DUI) involves operating a vehicle 
     while one has a blood alcohol tolerance of at least .08. This action is one 
     that an abundance of people often overlook until it is too late. In many 
     sitautions, people are unaware that their BAC level is already .08 or that 
     they are too intoxicated to keep driving. This is due to the effects of
     alcohol, and the lack of obvious indicators it holds to make it clear to an 
     invididual that they are not conscious enough to operate a vehicle."), 
-  p("
+  tags$p("
     The affects of DUI can range from those that are minor, all the way to 
     extreme fatalities that cannot be undone. By observing real data that 
     depicts possible correlations between DUI and fatalities, a variety of 
@@ -44,7 +45,7 @@ overview_main_content <- mainPanel(
     gain a better understanding of the consequences of driving under the influence.
     "),
   
-  p("
+  tags$p("
     The specific data we will be using for this report includes BAC levels
     for each state along with the number of fatalities, impaired driving
     death rate, percentage of adults who have died from DUI's in specific states,
@@ -52,20 +53,20 @@ overview_main_content <- mainPanel(
     With all of these data sources, our report aims to answer the specific questions 
     of: "),
   
-  p("
+  tags$h3("
     1. Is a driver with higher blood alcohol concentration (BAC) more likely to be 
     involved in a crash? "),
-  p("
+  tags$h3("
     2. What is the percentage of adults involved in car accidents at the BAC levels 
     of 0, 0.1-0.7, 0.8+ respectively? These accidents will be compared at different 
     BAC levels for various states. "),
-  p("
+  tags$h3("
     3. What percentage of alcohol-related car accidents are caused by drivers 
     under the legal drinking age? "), 
-  p("
+  tags$h3("
     4. In which areas in the United States is it most likely for people to 
     knowingly be drinking and driving? "),
-  p("
+  tags$h3("
     5. What is the difference between the percentage of drivers at various
     intoxication levels, examined in two specific states?
     "),
@@ -75,7 +76,7 @@ overview_main_content <- mainPanel(
 
 #Tab 1
 overview <- tabPanel(
-  "BAC Level and Car Accident Overview",
+  tags$h1("BAC Level and Car Accident Overview"),
   titlePanel("BAC Level and Car Accident Overview"),
   overview_main_content
 )
@@ -116,7 +117,7 @@ scatterplot_main_content <- mainPanel(
 
 # Put together tab for scatterplot
 scatterplot_panel <- tabPanel(
-  "Scatterplots at Different BAC Levels",
+  tags$h1("Scatterplots at Different BAC Levels"),
   titlePanel("% Drivers in Fatal Crashes at Different BAC Levels"),
   sidebarLayout(
     scatterplot_sidebar_content,
@@ -131,9 +132,9 @@ choices <- c("2012_All_Ages", "2014_All_Ages", "2012_Age_0_20", "2014_Age_0_20",
              "2014_Female")
 
 barplot <- tabPanel(
-  "Impared Driving Death Rate", titlePanel("Death Cause By Drunk Driving
-                                           in Different Age Group and Sex (2012
-                                           and 2014)"),
+  tags$h1("Impaired Driving Death Rate"), 
+  titlePanel("Death Caused By Drunk Driving in Different Age Group and Sex 
+              (2012 and 2014)"),
   sidebarLayout(
     sidebarPanel(
       # choosing the state
@@ -188,7 +189,7 @@ twostate_main_content <- mainPanel(
 
 # Put together tab for twostates
 twostate_panel <- tabPanel(
-  "BAC Levels Between States",
+  tags$h1("BAC Levels Between States"),
   titlePanel("Compare BAC Levels Between Two States"),
   sidebarLayout(
     twostate_sidebar_content,
@@ -235,12 +236,12 @@ takeaways_main_content <- mainPanel(
   plotOutput(outputId = "bacplot1"))
 
 takeaways <- tabPanel(
-  "BAC Level and Car Accident Takeaways",
+  tags$h1("BAC Level and Car Accident Takeaways"),
   titlePanel("BAC Level and Car Accident Takeaways"),
   takeaways_main_content)
 
 # UI structure
-ui <- navbarPage(
+ui <- navbarPage(theme = "style.css",
   "US Drunk Driving Data",
   overview,
   scatterplot_panel,
