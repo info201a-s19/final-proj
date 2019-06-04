@@ -127,17 +127,15 @@ barplot <- tabPanel(
       # choosing the state
       selectInput(
         inputId = "first", label = "Select the first Comparison Variable", 
-        choices = choices
-      ),
+        choices = choices),
       # choosing the number of cities to be shown
       selectInput(
         inputId = "second", label = "Select the second Comparison Variable", 
-        choices = choices
-      )
+        choices = choices)
     ),
     mainPanel(
       # displaying the resulting table with explanation
-      tableOutput(outputId = "barplot"),
+      plotlyOutput(outputId = "barplot"),
       p("")
       )
     )
