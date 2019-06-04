@@ -8,6 +8,7 @@ library("tidyr")
 # source server file
 source("app_server.R")
 source("scripts/Histogram_Fatalities.R")
+source("final_scripts/make_map.R")
 bac <- read.csv("data/dataset1.csv", stringsAsFactors = FALSE)
 # reformat column names
 colnames(bac) <- c(
@@ -155,6 +156,23 @@ barplot <- tabPanel(
   )
   )
 
+# Tab 4: Map of Car Crashes in New York from 2014-2019
+# due to alcohol involvement
+year_range <- as.numeric(range(copy$year))
+
+map_page <- tabPanel(
+    tags$h1("Car Crashes New York"),
+    titlePanel
+    ("Car Crashes in New York due to Alcohol Involvement (2014-2019)"), 
+    sidebarPanel(
+        selectInput("Year", label = "Choose a Year",
+                    choices = copy$year)
+    ),
+    mainPanel(
+        leafletOutput(outputId = "nymap")
+    )
+)
+
 #Tab 5: BAC b/w two states
 # Select state 1
 state1_input <- selectInput(
@@ -245,6 +263,7 @@ ui <- navbarPage(theme = "style.css",
   overview,
   scatterplot_panel,
   barplot,
+  map_page,
   twostate_panel,
   takeaways
 )

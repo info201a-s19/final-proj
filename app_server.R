@@ -5,6 +5,7 @@ library("shiny")
 library("stringr")
 library("dplyr")
 source("scripts/Histogram_Fatalities.R")
+source("final_scripts/make_map.R")
 
 server <- function(input, output) {
   output$bacplot1 <- renderPlot({
@@ -95,4 +96,9 @@ server <- function(input, output) {
       )
     return(plot)
   })
+  
+  output$nymap <- renderLeaflet({
+      return(make_map(copy, input$Year))
+  })
+  
 }
