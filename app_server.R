@@ -8,6 +8,7 @@ library("dplyr")
 server <- function(input, output) {
   # Define scatterplot to render in UI
   output$scatterplot <- renderPlotly({
+    
     # select input data
     data <- bac[c("State", input$x_input, input$y_input)]
     x <- data[, input$x_input]
@@ -59,5 +60,6 @@ server <- function(input, output) {
              margin = list(b = 100),
              barmode = 'group')
   })
+  
+  
 }
-
