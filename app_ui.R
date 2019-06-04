@@ -70,7 +70,7 @@ overview <- tabPanel(
   overview_main_content
 )
 
-# Tab 2: Ethnic Group
+# Tab 2: BAC Summary
 
 col_names <- colnames(bac)
 
@@ -142,7 +142,48 @@ barplot <- tabPanel(
   )
   )
 
-#Tab 5:
+#Tab 5: BAC b/w two states
+# Select state 1
+state1_input <- selectInput(
+  inputId = "state1_input",
+  label = "Choose State 1",
+  choices = bac[, 1],
+  selected = "Alabama"
+)
+
+# Select state 2
+state2_input <- selectInput(
+  inputId = "state2_input",
+  label = "Choose State 2",
+  choices = bac[, 1],
+  selected = "Alaska"
+)
+
+# Place selection tools on sidebar
+twostate_sidebar_content <- sidebarPanel(
+  state1_input,
+  state2_input
+)
+
+# Twostate main display
+twostate_main_content <- mainPanel(
+  p("This display of stacked barplots compares the percentages of each
+    level of intoxication of drivers involved in fatal crashes, between the 
+    selected states."),
+  plotOutput(outputId = "twostateplot")
+  )
+
+# Put together tab for twostates
+twostate_panel <- tabPanel(
+  "BAC Levels Between States",
+  titlePanel("Compare BAC Levels Between Two States"),
+  sidebarLayout(
+    twostate_sidebar_content,
+    twostate_main_content
+  )
+)
+
+# Tab 6:
 
 takeaways_main_content <- mainPanel(
   p("
@@ -183,5 +224,6 @@ ui <- navbarPage(
   overview,
   scatterplot_panel,
   barplot,
+  twostate_panel,
   takeaways
 )
