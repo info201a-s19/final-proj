@@ -3,6 +3,7 @@ library("ggplot2")
 library("plotly")
 library("shiny")
 library("stringr")
+library("dplyr")
 
 server <- function(input, output) {
   # Define scatterplot to render in UI
