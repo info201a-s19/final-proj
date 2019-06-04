@@ -66,4 +66,29 @@ server <- function(input, output) {
              margin = list(b = 100),
              barmode = 'group')
   })
+  
+  # Tab 5: Two states
+  # Define twostateplot to render in UI
+  output$twostateplot <- renderPlot({
+    # select input data
+    data <- bac[c(bac$State == input$state1_input |
+                    bac$State == input$state2_input), 
+                c(1, 3, 5, 7)]
+    # rearrange data for plotting
+    data <- gather(
+      data,
+      key = baclevel,
+      value = percent,
+      -State
+    )
+    plot <- ggplot(data, aes(fill = baclevel, y = percent, x = State)) +
+      geom_bar(stat = "identity") +
+      labs(title = "BAC Level Percentages Between States") +
+      scale_fill_discrete(name = "Legend", 
+                          labels = c("Drivers w/ 0.00 BAC",
+                                     "Drivers w/ 0.01-0.07 BAC",
+                                     "Drivers w/ 0.08+ BAC")
+      )
+    return(plot)
+  })
 }
