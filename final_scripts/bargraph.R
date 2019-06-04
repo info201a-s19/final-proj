@@ -26,12 +26,11 @@ make_graph <- function(first, second){
     select(State, first, second)
   colnames(data_x) <- c("State", "first", "second")
   
-  plot_ly(data, x = ~State, y = ~first, type = 'bar', name = first, 
+  plot_ly(data, x = ~State, y = ~first, type = 'bar',  
           marker = list(color = 'rgb(49,130,189)')) %>%
-    add_trace(y = ~second, name = Second, 
-              marker = list(color = 'rgb(204,204,204)')) %>%
-    layout(xaxis = list(title = "", tickangle = -45),
-           yaxis = list(title = ""),
+    add_trace(y = ~second, marker = list(color = 'rgb(204,204,204)')) %>%
+    layout(xaxis = list(title = "State", tickangle = -45),
+           yaxis = list(title = "Death Rate %"),
            margin = list(b = 100),
            barmode = 'group')
 }
