@@ -143,13 +143,30 @@ barplot <- tabPanel(
     )
   )
 
+# Tab 4
+histogram_pg <- tabPanel(
+    "Histogram",
+    titlePanel("Fatal Car Crashes by State"),
+    sidebarLayout(
+        sidebarPanel(
+            selectInput("bac_level", label = "Please Pick",
+                        choices = as.list(colnames(bac_levels[,-1])))
+        ),
+        mainPanel(
+            plotlyOutput("histogram")
+        )
+    )
+    
+)
+
 
 # UI structure
 ui <- navbarPage(
   "US Drunk Driving Data",
   takeaways,
   scatterplot_panel,
-  barplot
+  barplot,
+  histogram_pg
 )
 
 

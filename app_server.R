@@ -3,8 +3,16 @@ library("ggplot2")
 library("plotly")
 library("shiny")
 library("stringr")
+source("final_scripts/make_histogram.R")
 
 server <- function(input, output) {
+    
+    output$histogram <- renderPlotly({
+        make_chart(bac_levels, input$bac_level)
+        
+    })
+    
+    
   # Define scatterplot to render in UI
   output$scatterplot <- renderPlotly({
     # select input data
