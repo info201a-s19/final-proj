@@ -145,8 +145,7 @@ barplot <- tabPanel(
       # displaying the resulting table with explanation
       plotlyOutput(outputId = "barplot"),
       p("This bar graph compares impaired driving accident death rate from
-        different age group and sex across the United States. (An error will
-        occor if choosing the same data for comparison)")
+        different age group and sex across the United States.")
     )
   )
  )
