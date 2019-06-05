@@ -153,6 +153,7 @@ barplot <- tabPanel(
 
 # Tab 4: Map of Car Crashes in New York from 2014-2019
 # due to alcohol involvement
+year_choice <- c("2014", "2015", "2016", "2017", "2018", "2019")
 
 map_page <- tabPanel(
     tags$h1("Car Crashes New York"),
@@ -162,8 +163,7 @@ map_page <- tabPanel(
         sidebarPanel(
             selectInput("Year",
                         label = "Choose a Year",
-                        choices = copy$year,
-                        selected = "2014")
+                        choices = year_choice)
         ),
         mainPanel(
             leafletOutput(outputId = "nymap"),
