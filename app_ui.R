@@ -48,8 +48,8 @@ overview_main_content <- mainPanel(
     The specific data we will be using for this report includes BAC levels
     for each state along with the number of fatalities, impaired driving
     death rate, percentage of adults who have died from DUI's in 
-    specific states, overall collision statistics, With all of these data sources,
-    our report aims to answer the specific questions of: "),
+    specific states, and overall collision statistics. With all of these data 
+    sources, our report aims to answer the specific questions of: "),
   tags$h3("
     1. Is a driver with higher blood alcohol concentration (BAC) more likely
     to be involved in a crash? "),
@@ -224,25 +224,25 @@ takeaways_main_content <- mainPanel(
   p("
     1)
     As can be seen from the data presented in various states in the US, having
-    a BAC of over 0.8, which also characterizes one as having a DUI is strongly
+    a BAC of over 0.8, which also characterizes one as having a DUI, is strongly
     correlated with car accident injuries and fatalities. From real life
-    examples from the states of ___ and ____specifically, one can see
-    that the largest percentage of car accidents occur from those that
-    are either unrelated to alcohol, or ones that have a BAC level of over 0.8.
-    This is important to raise awareness for because of how incredibly easy
-    it is to reach this BAC level without one even realizing it. Thus, people
-    should try to avoid drinking and driving at all costs if possible. The
-    histogram below here shows the clear percentage difference dependent on
-    alcohol levels:"),
+    examples from the state of New York specfically, there has shown to be a
+    significant increase in the number of crashes that have occured due to
+    alcohol involvement starting from data ranging from 2014, all the way to 
+    2019. 
+    It is important to raise awareness for this increase because of how 
+    incredibly easy it is to reach this BAC level without one even realizing it.
+    Thus, we must work towards decreasing alcohol involvement levels by 
+    spreading awareness for this serious issue."),
   p(
     "2)
     One of the ways to examine whether a driver with higher blood
-    alcohol concentration (BAC) more likely to be involved in a crash is by
+    alcohol concentration (BAC) is more likely to be involved in a crash is by
     comparing the percentage of drivers with 0.01-0.07 BAC versus those with
     0.08+ BAC. By looking at the percentage values, we see a general trend that
     the percentage of drivers who were over the limit in fatal crashes is
     always greater than the percentage of those intoxicated but under the
-    limit. "),
+    limit.(see chart below) "),
   p("
     3)
     In the map of New York City's car crashes, the density and number of
