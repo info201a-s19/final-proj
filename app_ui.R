@@ -167,7 +167,7 @@ map_page <- tabPanel(
         ),
         mainPanel(
             leafletOutput(outputId = "nymap"),
-            p("This map shows the number of car crashes in New York due to
+            p("This map shows the number of car crashes in New York City due to
         Alcohol Involvement. It ranges from 2014 to 2019, and it
         shows the Borough and Zip Code of the accident when on an
         accident site. This shows the area that car crashes oftenly occur
@@ -245,6 +245,13 @@ takeaways_main_content <- mainPanel(
     limit. "),
   p("
     3)
+    In the map of New York City's car crashes, the density and number of
+    car crashes in the area seems to be increasing, through the number of
+    circles. 2018 has the most car crashes (mostly because we are only
+    halfway through 2019), which indicates that drunk driving has not
+    decreased. This shows that drivers are becoming more reckless
+    and careless even as time goes on and how dangerous living and driving
+    in a large city could be.
     "),
   p("
 4) Most states have an fairly consistent percentage of drivers over the legal
