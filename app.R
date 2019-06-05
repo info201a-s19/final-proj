@@ -5,6 +5,9 @@ library("plotly")
 library("shiny")
 library("stringr")
 library("tidyr")
+library("rsconnect")
+library("lintr")
+library("styler")
 
 # Source in ui and server files
 source("app_ui.R")

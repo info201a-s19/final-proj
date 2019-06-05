@@ -1,4 +1,4 @@
-# ui 
+# ui
 library("dplyr")
 library("ggplot2")
 library("plotly")
@@ -47,14 +47,14 @@ overview_main_content <- mainPanel(
   tags$p("
     The specific data we will be using for this report includes BAC levels
     for each state along with the number of fatalities, impaired driving
-    death rate, percentage of adults who have died from DUI's in 
-    specific states, and overall collision statistics. With all of these data 
+    death rate, percentage of adults who have died from DUI's in
+    specific states, and overall collision statistics. With all of these data
     sources, our report aims to answer the specific questions of: "),
   tags$h3("
     1. Is a driver with higher blood alcohol concentration (BAC) more likely
     to be involved in a crash? "),
   tags$h3("
-    2. What is the percentage of adults involved in car accidents at the BAC 
+    2. What is the percentage of adults involved in car accidents at the BAC
     levels of 0, 0.1-0.7, 0.8+ respectively? These accidents will be compared
     at different BAC levels for various states. "),
   tags$h3("
@@ -67,9 +67,10 @@ overview_main_content <- mainPanel(
     5. What is the difference between the percentage of drivers at various
     intoxication levels, examined in two specific states?
     "),
-  img(src = "Drinking.jpg", width = "300px", height = "250px"))
+  img(src = "Drinking.jpg", width = "300px", height = "250px")
+)
 
-#Tab 1
+# Tab 1
 overview <- tabPanel(
   tags$h1("BAC Level and Car Accident Overview"),
   tags$h2(titlePanel("BAC Level and Car Accident Overview")),
@@ -108,7 +109,7 @@ scatterplot_main_content <- mainPanel(
     at different blood alcohol concentration levels, who were involved in fatal
     accidents. Each point represents a state."),
   plotlyOutput(outputId = "scatterplot")
-  )
+)
 
 # Put together tab for scatterplot
 scatterplot_panel <- tabPanel(
@@ -121,10 +122,12 @@ scatterplot_panel <- tabPanel(
 )
 
 # Tab 3: Death Rate by Age and Gender 2014/2012
-choices <- c("2012_All_Ages", "2014_All_Ages", "2012_Age_0_20",
-             "2014_Age_0_20", "2012_Age_21_34", "2014_Age_21_34",
-             "2012_Age_35_plus", "2014_Age_35_plus", "2012_Male",
-             "2014_Male", "2012_Female", "2014_Female")
+choices <- c(
+  "2012_All_Ages", "2014_All_Ages", "2012_Age_0_20",
+  "2014_Age_0_20", "2012_Age_21_34", "2014_Age_21_34",
+  "2012_Age_35_plus", "2014_Age_35_plus", "2012_Male",
+  "2014_Male", "2012_Female", "2014_Female"
+)
 
 barplot <- tabPanel(
   tags$h1("Impaired Driving Death Rate"),
@@ -135,11 +138,13 @@ barplot <- tabPanel(
       # choosing the state
       selectInput(
         inputId = "first", label = "Select the first Comparison Variable",
-        choices = choices),
+        choices = choices
+      ),
       # choosing the number of cities to be shown
       selectInput(
         inputId = "second", label = "Select the second Comparison Variable",
-        choices = choices)
+        choices = choices
+      )
     ),
     mainPanel(
       # displaying the resulting table with explanation
@@ -148,35 +153,36 @@ barplot <- tabPanel(
         different age group and sex across the United States.")
     )
   )
- )
+)
 
 # Tab 4: Map of Car Crashes in New York from 2014-2019
 # due to alcohol involvement
 year_choice <- c("2014", "2015", "2016", "2017", "2018", "2019")
 
 map_page <- tabPanel(
-    tags$h1("Car Crashes New York"),
-    titlePanel
-    ("Car Crashes in New York due to Alcohol Involvement (2014-2019)"),
-    sidebarLayout(
-        sidebarPanel(
-            selectInput("Year",
-                        label = "Choose a Year",
-                        choices = year_choice)
-        ),
-        mainPanel(
-            leafletOutput(outputId = "nymap"),
-            p("This map shows the number of car crashes in New York City due to
+  tags$h1("Car Crashes New York"),
+  titlePanel
+  ("Car Crashes in New York due to Alcohol Involvement (2014-2019)"),
+  sidebarLayout(
+    sidebarPanel(
+      selectInput("Year",
+        label = "Choose a Year",
+        choices = year_choice
+      )
+    ),
+    mainPanel(
+      leafletOutput(outputId = "nymap"),
+      p("This map shows the number of car crashes in New York City due to
         Alcohol Involvement. It ranges from 2014 to 2019, and it
         shows the Borough and Zip Code of the accident when on an
         accident site. This shows the area that car crashes oftenly occur
         and that the number of crashes has increased
         through the years.")
-        )
     )
+  )
 )
 
-#Tab 5: BAC b/w two states
+# Tab 5: BAC b/w two states
 # Select state 1
 state1_input <- selectInput(
   inputId = "state1_input",
@@ -205,7 +211,7 @@ twostate_main_content <- mainPanel(
     level of intoxication of drivers involved in fatal crashes, between the
     selected states."),
   plotOutput(outputId = "twostateplot")
- )
+)
 
 # Put together tab for twostates
 twostate_panel <- tabPanel(
@@ -227,11 +233,11 @@ takeaways_main_content <- mainPanel(
     correlated with car accident injuries and fatalities. From real life
     examples from the state of New York specfically, there has shown to be a
     significant increase in the number of crashes that have occured due to
-    alcohol involvement starting from data ranging from 2014, all the way to 
-    2019. 
-    It is important to raise awareness for this increase because of how 
+    alcohol involvement starting from data ranging from 2014, all the way to
+    2019.
+    It is important to raise awareness for this increase because of how
     incredibly easy it is to reach this BAC level without one even realizing it.
-    Thus, we must work towards decreasing alcohol involvement levels by 
+    Thus, we must work towards decreasing alcohol involvement levels by
     spreading awareness for this serious issue."),
   p(
     "2)
@@ -241,7 +247,8 @@ takeaways_main_content <- mainPanel(
     0.08+ BAC. By looking at the percentage values, we see a general trend that
     the percentage of drivers who were over the limit in fatal crashes is
     always greater than the percentage of those intoxicated but under the
-    limit.(see chart below) "),
+    limit.(see chart below) "
+  ),
   p("
     3)
     In the map of New York City's car crashes, the density and number of
@@ -259,15 +266,18 @@ takeaways_main_content <- mainPanel(
   Washington D.C. has a much higher percentage of drivers over the legal limit
   who were involved in fatal crashes.
     "),
-  plotOutput(outputId = "bacplot1"))
+  plotOutput(outputId = "bacplot1")
+)
 
 takeaways <- tabPanel(
   tags$h1("BAC Level and Car Accident Takeaways"),
   titlePanel("BAC Level and Car Accident Takeaways"),
-  takeaways_main_content)
+  takeaways_main_content
+)
 
 # UI structure
-ui <- navbarPage(theme = "style.css",
+ui <- navbarPage(
+  theme = "style.css",
   tags$header("U.S. Drunk Driving Data"),
   overview,
   scatterplot_panel,
